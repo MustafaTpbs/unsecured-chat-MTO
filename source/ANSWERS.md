@@ -1,0 +1,1 @@
+# Question 1 : Les données ne sont pas confidentiels vis à vis du serveur car on voit les messages, ils ne sont pas cryptés, on voit également les informations du clients. 
