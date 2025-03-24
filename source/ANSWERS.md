@@ -2,6 +2,8 @@
 
 # Question 2 : pickle est risqué car il peut exécuter du code malveillant lors de la désérialisation, n'est pas interopérable avec d'autres langages, peut générer des fichiers volumineux et lents à traiter, et perd la compatibilité lorsque la structure des objets change, ce qui le rend moins fiable et sécurisé que des alternatives comme JSON ou Protocol Buffers.
 
+# Question 3 : JSON et MessagePack sont sécurisés car ils ne permettent pas d'exécuter du code arbitraire lors de la désérialisation, contrairement à pickle qui peut invoquer des fonctions via des objets malveillants.
+
 
 
 
