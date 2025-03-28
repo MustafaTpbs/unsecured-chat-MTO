@@ -1,21 +1,21 @@
 import logging
 from typing import Callable
 
-import zmq
+import zmq# Bibliothèque pour la communication entre processus et réseaux
 
 class BaseClient:
     def __init__(self, host:str, send_port:int, broadcast_port:int) -> None:
         self._context = zmq.Context()
-        self._send_socket = self._context.socket(zmq.REQ)
-        self._send_socket.connect(f"tcp://{host}:{send_port}")
-        self._broadcast_socket = self._context.socket(zmq.SUB)
-        self._broadcast_socket.connect(f"tcp://{host}:{broadcast_port}")
+        self._send_socket = self._context.socket(zmq.REQ) # Socket pour envoyer des requêtes
+        self._send_socket.connect(f"tcp://{host}:{send_port}") # Connexion au serveur
+        self._broadcast_socket = self._context.socket(zmq.SUB)# Socket pour recevoir des messages diffusés
+        self._broadcast_socket.connect(f"tcp://{host}:{broadcast_port}")# Connexion au canal de diffusion
         self._broadcast_socket.setsockopt(zmq.SUBSCRIBE, b"")
         self._log = logging.getLogger("BaseClient")
 
     def send(self, message:bytes)->bytes:
-        self._send_socket.send(message)
-        response = self._send_socket.recv()
+        self._send_socket.send(message) # Envoi du message au serveur
+        response = self._send_socket.recv() # Attente et réception de la réponse
         self._log.debug(f"Send '{message}', recv '{response}'")
         return response
     
@@ -23,7 +23,7 @@ class BaseClient:
         try:
             while True:
                 broadcast_message = self._broadcast_socket.recv(flags=zmq.NOBLOCK)
-                self._log.debug(f"Recv from broadcast '{broadcast_message}'")
+                self._log.debug(f"Recv from broadcast '{broadcast_message}'")# Log du message reçu
                 try:
                     on_recv(broadcast_message)
                 except Exception as e:

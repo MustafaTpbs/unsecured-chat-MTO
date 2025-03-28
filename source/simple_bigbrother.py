@@ -3,8 +3,8 @@ import pickle
 import logging
 
 def main():
-    logging.basicConfig(level=logging.INFO)
-    log = logging.getLogger("BigBrother")
+    logging.basicConfig(level=logging.INFO) # Configuration du niveau de log
+    log = logging.getLogger("BigBrother")# Création d'un logger spécifique
     
     context = zmq.Context()
     broadcast_socket = context.socket(zmq.SUB)
@@ -15,10 +15,10 @@ def main():
     
     try:
         while True:
-            packet = broadcast_socket.recv()
-            frame = pickle.loads(packet)
-            if frame["type"] == "message":
-                log.info(f"[SPY] {frame['nick']}: {frame['message']}")
+            packet = broadcast_socket.recv()# Réception
+            frame = pickle.loads(packet)# Désérialisation
+            if frame["type"] == "message":# Vérification du type
+                log.info(f"[SPY] {frame['nick']}: {frame['message']}")# Affichage du message intercepté
     except KeyboardInterrupt:
         log.info("BigBrother is shutting down...")
     finally:
