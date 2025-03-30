@@ -18,5 +18,6 @@
 
 # Question 10 : Pour éviter l’action du Rogue Server, il faut authentifier et vérifier l’intégrité des messages avec des signatures numériques (ex. HMAC)
 
+# Question 11 : Une solution simple mais sous-optimale consiste à concaténer la variable nick avec le message avant de le chiffrer avec Fernet, puis à vérifier après déchiffrement que nick correspond bien à l'expéditeur attendu, ce qui ajoute une couche de validation sans garantir une authentification forte.
 
 
