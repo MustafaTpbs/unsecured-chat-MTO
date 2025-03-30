@@ -14,7 +14,9 @@
 
 # Question 8 : Le serveur relaie uniquement des messages chiffrés sans pouvoir les lire, les clients étant responsables du déchiffrement.
 
+# Question 9 : Le serveur malveillant peut modifier ou injecter des messages chiffrés sans pouvoir les lire, perturbant ainsi la communication entre les clients.
 
+# Question 10 : Pour éviter l’action du Rogue Server, il faut authentifier et vérifier l’intégrité des messages avec des signatures numériques (ex. HMAC)
 
 
 
